@@ -15,32 +15,32 @@ export const ROWS = puzzle.length;
 export const COLS = puzzle[0].length;
 
 // 10 pieces
-// export const items = [
-//   ["x...", "xxxx"],
-//   ["x..", "xxx", "..x"],
-//   ["..xx", "xxx."],
-//   ["xxxx"],
-//   [".xx", "xxx"],
-//   ["xxx", "x.x"],
-//   ["x..", "xxx"],
-//   ["x..", "x..", "xxx"],
-//   ["x..", "xxx", "x.."],
-//   ["xx.", ".xx"],
-// ];
-
-// 10 alternate pieces
 export const items = [
   ["x...", "xxxx"],
   ["x..", "xxx", "..x"],
-  ["...x", "..xx", "xxx."],
+  ["..xx", "xxx."],
   ["xxxx"],
   [".xx", "xxx"],
-  [".x.", "xxx"],
+  ["xxx", "x.x"],
   ["x..", "xxx"],
-  ["x.x", "xxx"],
+  ["x..", "x..", "xxx"],
   ["x..", "xxx", "x.."],
   ["xx.", ".xx"],
 ];
+
+// 10 alternate pieces
+// export const items = [
+//   ["x...", "xxxx"],
+//   ["x..", "xxx", "..x"],
+//   ["...x", "..xx", "xxx."],
+//   ["xxxx"],
+//   [".xx", "xxx"],
+//   [".x.", "xxx"],
+//   ["x..", "xxx"],
+//   ["x.x", "xxx"],
+//   ["x..", "xxx", "x.."],
+//   ["xx.", ".xx"],
+// ];
 
 const rotate = (item: string[]) => {
   const n = item.length;
