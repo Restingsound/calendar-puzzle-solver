@@ -151,6 +151,11 @@ export function solve(board: string[][]) {
     }
   };
 
+  /**
+   * finds solutions to calendar puzzle
+   * @param  {number} index  position number in calendar matrix
+   * @return {any}        array of solutions
+   */
   const findSolutions: any = (index: number) => {
     count += 1;
     if (ret.length > 49) {
@@ -159,10 +164,6 @@ export function solve(board: string[][]) {
     const row = Math.floor(index / COLS);
     const col = index % COLS;
     if (row >= ROWS) {
-      //console.log("solution " + count + " is ");
-      //console.log(solution);
-      //why is this map different!? ********************************************
-      //console.log(solution.map((s) => s));
       ret.push(solution.map((s) => s!));
       return true;
     }
