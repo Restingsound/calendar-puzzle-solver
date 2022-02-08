@@ -94,7 +94,7 @@ export function solve(board: string[][]) {
   const ret: { index: number; shapeRotation: number }[][] = [];
   const solution: ({ index: number; shapeRotation: number } | null)[] =
     items.map(() => null);
-  let count = 0;
+  //let count = 0;
 
   const canPlace = (index: number, shape: number, shapeRotation: number) => {
     const row = Math.floor(index / COLS);
@@ -157,7 +157,7 @@ export function solve(board: string[][]) {
    * @return {any}        array of solutions
    */
   const findSolutions: any = (index: number) => {
-    count += 1;
+    //count += 1;
     if (ret.length > 49) {
       return false;
     }
@@ -191,6 +191,6 @@ export function solve(board: string[][]) {
   };
 
   findSolutions(0);
-  console.log(`Searches: ${count}`);
+  //console.log(`Searches: ${count}`);
   return ret;
 }

@@ -17,21 +17,21 @@ class Calendar extends React.PureComponent<{
   onChange: (params: { month: number; day: number; dayName: number }) => any;
 }> {
   monthNames = [
-    "JAN",
-    "FEB",
-    "MAR",
-    "APR",
-    "MAY",
-    "JUN",
-    "JUL",
-    "AUG",
-    "SEP",
-    "OCT",
-    "NOV",
-    "DEC",
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
 
-  dayNames = ["SUN", "MON", "TUES", "WED", "THUR", "FRI", "SAT"];
+  dayNames = ["Sun", "Mon", "Tues", "Wed", "Thur", "Fri", "Sat"];
 
   render() {
     const { month, day, dayName, onChange } = this.props;
@@ -148,23 +148,63 @@ class SolutionView extends React.PureComponent<{
             >
               {flatten(
                 item.map((s, r) =>
-                  s.split("").map((_1, c) => (
-                    <div
-                      key={`${r}_${c}`}
-                      className="SolutionViewCell"
-                      style={
-                        item[r][c] === "x"
-                          ? {
-                              border: "2px ridge",
-                              borderColor: this.colors[i],
-                              width: 46,
-                              height: 46,
-                              backgroundColor: this.colors[i],
-                            }
-                          : {}
+                  s.split("").map((_1, c) => {
+                    if (item[r][c] !== "x") {
+                      return (
+                        <div key={`${r}_${c}`} className="SolutionViewCell" />
+                      );
+                    }
+                    let top = 0;
+                    let bottom = 0;
+                    let left = 0;
+                    let right = 0;
+                    const bw = 1; //border width
+                    if (r === 0) {
+                      top = 1;
+                    } else {
+                      if (item[r - 1][c] === ".") {
+                        top = 1;
                       }
-                    />
-                  ))
+                    }
+                    if (r === item.length - 1) {
+                      bottom = 1;
+                    } else {
+                      if (item[r + 1][c] === ".") {
+                        bottom = 1;
+                      }
+                    }
+                    if (c === 0) {
+                      left = 1;
+                    } else {
+                      if (item[r][c - 1] === ".") {
+                        left = 1;
+                      }
+                    }
+                    if (c === item[0].length - 1) {
+                      right = 1;
+                    } else {
+                      if (item[r][c + 1] === ".") {
+                        right = 1;
+                      }
+                    }
+                    return (
+                      <div
+                        key={`${r}_${c}`}
+                        className="SolutionViewCell"
+                        style={{
+                          borderTop: bw * top,
+                          borderLeft: bw * left,
+                          borderRight: bw * right,
+                          borderBottom: bw * bottom,
+                          borderStyle: "solid",
+                          borderColor: "black",
+                          width: 50 - left * bw - right * bw,
+                          height: 50 - top * bw - bottom * bw,
+                          backgroundColor: this.colors[i],
+                        }}
+                      />
+                    );
+                  })
                 )
               )}
             </div>
@@ -224,6 +264,45 @@ export default class App extends React.PureComponent<{}, AppState> {
       index: 0,
     });
 
+  longMonthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  longDayNames = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+
+  nth = function (d: number): String {
+    if (d > 3 && d < 21) return "th";
+    switch (d % 10) {
+      case 1:
+        return "st";
+      case 2:
+        return "nd";
+      case 3:
+        return "rd";
+      default:
+        return "th";
+    }
+  };
+
   render() {
     const { month, day, dayName, solutions, index } = this.state;
     return (
@@ -248,6 +327,13 @@ export default class App extends React.PureComponent<{}, AppState> {
             onChange={this.handleChange}
           />
           {solutions[index] && <SolutionView solution={solutions[index]} />}
+        </div>
+        <div>
+          Puzzle for {this.longDayNames[dayName]}, {this.longMonthNames[month]}{" "}
+          {day}
+          {this.nth(day)}
+          <br />
+          Found {solutions.length} possible solutions for this puzzle.
         </div>
         {solutions.length > 0 ? (
           <div className="Solutions">
