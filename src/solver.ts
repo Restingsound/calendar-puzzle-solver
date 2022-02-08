@@ -15,7 +15,7 @@ export const ROWS = puzzle.length;
 export const COLS = puzzle[0].length;
 
 // 10
-const items = [
+export const items = [
   ["x...", "xxxx"],
   ["x..", "xxx", "..x"],
   ["..xx", "xxx."],
@@ -66,6 +66,24 @@ export const itemMasks = items.map((item) => {
   }
   return uniqBy(ret, (x) => x.join("\n"));
 });
+
+// 10 * ?
+export const itemDirections = items.map((item, i) => {
+  const masks = [item];
+  // rotate
+  for (let i = 1; i < 4; ++i) {
+    masks.push(rotate(masks[i - 1]));
+  }
+  for (let i = 4; i < 8; ++i) {
+    masks.push(flip(masks[i - 4]));
+  }
+  const originMaskString = masks.map((mask) => mask.join("\n"));
+  const itemMaskStrings = itemMasks[i].map((mask) => mask.join("\n"));
+  return itemMaskStrings.map((itemMaskString) =>
+    originMaskString.indexOf(itemMaskString)
+  );
+});
+
 // 10 * ?
 export const firstXCols = itemMasks.map((masks) =>
   masks.map((mask) => mask[0].indexOf("x"))
@@ -135,7 +153,7 @@ export function solve(board: string[][]) {
 
   const findSolutions: any = (index: number) => {
     count += 1;
-    if (ret.length > 100) {
+    if (ret.length > 49) {
       return false;
     }
     const row = Math.floor(index / COLS);

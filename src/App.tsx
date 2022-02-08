@@ -1,7 +1,14 @@
 import React from "react";
 import "./App.css";
 import { flatten, range } from "lodash";
-import { COLS, firstXCols, itemMasks, puzzle, ROWS, solve } from "./solver";
+import {
+  COLS,
+  firstXCols,
+  itemDirections,
+  items,
+  puzzle,
+  solve,
+} from "./solver";
 
 class Calendar extends React.PureComponent<{
   month: number;
@@ -104,49 +111,79 @@ class SolutionView extends React.PureComponent<{
 
   render() {
     const { solution } = this.props;
-    const board = range(ROWS).map(() => range(COLS).map(() => -1));
-
-    itemMasks.forEach((masks, shape) => {
-      const { index, shapeRotation } = solution[shape];
-      const row = Math.floor(index / COLS);
-      const col = index % COLS;
-      const mask = masks[shapeRotation];
-      const n = mask.length;
-      const m = mask[0].length;
-      const firstXCol = firstXCols[shape][shapeRotation];
-
-      for (let r = 0; r < n; ++r) {
-        for (let c = 0; c < m; ++c) {
-          if (mask[r][c] === "x") {
-            board[row + r][col + c - firstXCol] = shape;
-          }
-        }
-      }
-    });
 
     return (
       <div className="SolutionView">
-        {flatten(
-          range(ROWS).map((row) =>
-            range(COLS).map((col) => (
-              <div
-                key={`${row}_${col}`}
-                className="item"
-                style={
-                  board[row][col] >= 0
-                    ? { backgroundColor: this.colors[board[row][col]] }
-                    : { backgroundColor: "transparent" }
-                }
-              />
-            ))
-          )
-        )}
+        {items.map((item, i) => {
+          const { index, shapeRotation } = solution[i];
+          const row = Math.floor(index / COLS);
+          const col = index % COLS;
+          const firstXCol = firstXCols[i][shapeRotation];
+          const direction = itemDirections[i][shapeRotation];
+
+          const hwDiff = item.length - item[0].length;
+          const needDiff =
+            direction === 1 ||
+            direction === 3 ||
+            direction === 4 ||
+            direction === 6;
+          return (
+            <div
+              key={i}
+              className="SolutionViewItem"
+              style={{
+                top: row * 50,
+                left: (col - firstXCol) * 50,
+                width: item[0].length * 50,
+                height: item.length * 50,
+                transform: [
+                  `translate3d(${needDiff ? hwDiff * 25 : 0}px, ${
+                    needDiff ? hwDiff * -25 : 0
+                  }px, 0px)`,
+                  `rotate3d(1, 1, 0, ${Math.floor(direction / 4) * 180}deg)`,
+                  `rotate3d(0, 0, 1, -${(direction % 4) * 90}deg)`,
+                ].join(" "),
+              }}
+              data-direction={direction}
+            >
+              {flatten(
+                item.map((s, r) =>
+                  s.split("").map((_1, c) => (
+                    <div
+                      key={`${r}_${c}`}
+                      className="SolutionViewCell"
+                      style={
+                        item[r][c] === "x"
+                          ? {
+                              border: "2px ridge",
+                              borderColor: this.colors[i],
+                              width: 46,
+                              height: 46,
+                              backgroundColor: this.colors[i],
+                            }
+                          : {}
+                      }
+                    />
+                  ))
+                )
+              )}
+            </div>
+          );
+        })}
       </div>
     );
   }
 }
 
-export default class App extends React.PureComponent<{}> {
+type AppState = {
+  month: number; // 0 - 11
+  day: number; // 1 - 31
+  dayName: number; // 0 - 6
+  solutions: { index: number; shapeRotation: number }[][];
+  index: number;
+};
+
+export default class App extends React.PureComponent<{}, AppState> {
   solve = (month: number, day: number, dayName: number) => {
     const board = puzzle.map((row) => row.split(""));
     board[Math.floor(month / 6)][month % 6] = "x";
@@ -158,7 +195,7 @@ export default class App extends React.PureComponent<{}> {
     return solve(board);
   };
 
-  state = {
+  state: AppState = {
     month: new Date().getMonth(), // 0 - 11
     day: new Date().getDate(), // 1 - 31
     dayName: new Date().getDay(), // 0 - 6
@@ -220,7 +257,7 @@ export default class App extends React.PureComponent<{}> {
                 key={i}
                 onClick={() => this.setState({ index: i })}
               >
-                {`Solution ${i}`}
+                {`Solution ${i + 1}`}
               </div>
             ))}
           </div>

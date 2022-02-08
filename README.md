@@ -6,7 +6,7 @@ Created by Scott Mulderig
 
 [Try the Solver](https://restingsound.github.io/calendar-puzzle-solver/)
 
-[Source Project](https://github.com/xanatos626/calendar-puzzle-solver)
+[Source Project](https://github.com/zjuasmn/calendar-puzzle-solver)
 
 Click the month, date, and day of week to view all the corresponding solutions, click the solution to view the details.
 
