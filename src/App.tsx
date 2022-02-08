@@ -363,7 +363,7 @@ export default class App extends React.PureComponent<{}, AppState> {
             className={`SolutionItem ${solutionCount === 50 ? "selected" : ""}`}
             onClick={() => this.solCountChange(50)}
           >
-            50 Solution's
+            50 Solutions
           </div>
           <div
             className={`SolutionItem ${solutionCount === 0 ? "selected" : ""}`}
