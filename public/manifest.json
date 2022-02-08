@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Calendar Puzzle Sulver",
+  "name": "Calendar Puzzle Solver with Day of Week",
   "icons": [
     {
       "src": "favicon.ico",
