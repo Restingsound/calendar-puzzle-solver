@@ -2,9 +2,9 @@
 
 Created by Scott Mulderig
 
-[Built for Filmming Daily Puzzle Calendar](https://filmmings.com/products/daily-calendar-puzzle")
+[Built for Filmming Daily Puzzle Calendar](https://filmmings.com/products/daily-calendar-puzzle)
 
-[Try the Solver](https://filmmings.com/products/daily-calendar-puzzle")
+[Try the Solver](https://restingsound.github.io/calendar-puzzle-solver/)
 
 [Source Project](https://jandan.net)
 

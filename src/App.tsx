@@ -197,7 +197,7 @@ export default class App extends React.PureComponent<{}> {
             Daily Calendar Puzzle with Day of Week
           </a>
           <a
-            href="https://github.com/restingsound/daily-calendar-puzzle-solver"
+            href="https://github.com/Restingsound/calendar-puzzle-solver"
             style={{ marginLeft: 16 }}
           >
             Github - Restingsound
