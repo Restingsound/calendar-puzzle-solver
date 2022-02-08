@@ -9,6 +9,7 @@ import {
   puzzle,
   solve,
 } from "./solver";
+import { testSolver } from "./testSolver";
 
 class Calendar extends React.PureComponent<{
   month: number;
@@ -221,10 +222,16 @@ type AppState = {
   dayName: number; // 0 - 6
   solutions: { index: number; shapeRotation: number }[][];
   index: number;
+  solutionCount: number;
 };
 
 export default class App extends React.PureComponent<{}, AppState> {
-  solve = (month: number, day: number, dayName: number) => {
+  solve = (
+    month: number,
+    day: number,
+    dayName: number,
+    solutionCount: number
+  ) => {
     const board = puzzle.map((row) => row.split(""));
     board[Math.floor(month / 6)][month % 6] = "x";
     board[Math.floor((day - 1) / 7) + 2][(day - 1) % 7] = "x";
@@ -232,7 +239,7 @@ export default class App extends React.PureComponent<{}, AppState> {
       board[6][3 + dayName] = "x";
     }
     board[7][dayName] = "x";
-    return solve(board);
+    return solve(board, solutionCount);
   };
 
   state: AppState = {
@@ -242,9 +249,11 @@ export default class App extends React.PureComponent<{}, AppState> {
     solutions: this.solve(
       new Date().getMonth(),
       new Date().getDate(),
-      new Date().getDay()
+      new Date().getDay(),
+      1
     ),
     index: 0,
+    solutionCount: 1,
   };
 
   handleChange = ({
@@ -260,8 +269,19 @@ export default class App extends React.PureComponent<{}, AppState> {
       month,
       day,
       dayName,
-      solutions: this.solve(month, day, dayName),
+      solutions: this.solve(month, day, dayName, this.state.solutionCount),
       index: 0,
+    });
+
+  solCountChange = (solutionCount: number) =>
+    this.setState({
+      solutionCount: solutionCount,
+      solutions: this.solve(
+        this.state.month,
+        this.state.day,
+        this.state.dayName,
+        solutionCount
+      ),
     });
 
   longMonthNames = [
@@ -304,7 +324,10 @@ export default class App extends React.PureComponent<{}, AppState> {
   };
 
   render() {
-    const { month, day, dayName, solutions, index } = this.state;
+    if (false) {
+      testSolver();
+    }
+    const { month, day, dayName, solutions, index, solutionCount } = this.state;
     return (
       <div className="App">
         <h1>Calendar Puzzle Solver with Day of Week</h1>
@@ -328,14 +351,42 @@ export default class App extends React.PureComponent<{}, AppState> {
           />
           {solutions[index] && <SolutionView solution={solutions[index]} />}
         </div>
+
+        <div className="Solutions">
+          <div
+            className={`SolutionItem ${solutionCount === 1 ? "selected" : ""}`}
+            onClick={() => this.solCountChange(1)}
+          >
+            Single Solution
+          </div>
+          <div
+            className={`SolutionItem ${solutionCount === 50 ? "selected" : ""}`}
+            onClick={() => this.solCountChange(50)}
+          >
+            50 Solution's
+          </div>
+          <div
+            className={`SolutionItem ${solutionCount === 0 ? "selected" : ""}`}
+            onClick={() => this.solCountChange(0)}
+          >
+            All Solutions (Slow)
+          </div>
+        </div>
         <div>
           Puzzle for {this.longDayNames[dayName]}, {this.longMonthNames[month]}{" "}
           {day}
           {this.nth(day)}
           <br />
-          Found {solutions.length} possible solutions for this puzzle.
+          {solutionCount === 0 ? (
+            <div>
+              {" "}
+              Found all {solutions.length} possible solutions for this puzzle.
+            </div>
+          ) : (
+            <div></div>
+          )}
         </div>
-        {solutions.length > 0 ? (
+        {solutions.length > 1 ? (
           <div className="Solutions">
             {solutions?.map((solution, i) => (
               <div
@@ -348,7 +399,7 @@ export default class App extends React.PureComponent<{}, AppState> {
             ))}
           </div>
         ) : (
-          <div>No Solutions Found</div>
+          <div></div>
         )}
         <div>
           This page was created by{" "}

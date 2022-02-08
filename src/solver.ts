@@ -14,16 +14,30 @@ export const puzzle = [
 export const ROWS = puzzle.length;
 export const COLS = puzzle[0].length;
 
-// 10
+// 10 pieces
+// export const items = [
+//   ["x...", "xxxx"],
+//   ["x..", "xxx", "..x"],
+//   ["..xx", "xxx."],
+//   ["xxxx"],
+//   [".xx", "xxx"],
+//   ["xxx", "x.x"],
+//   ["x..", "xxx"],
+//   ["x..", "x..", "xxx"],
+//   ["x..", "xxx", "x.."],
+//   ["xx.", ".xx"],
+// ];
+
+// 10 alternate pieces
 export const items = [
   ["x...", "xxxx"],
   ["x..", "xxx", "..x"],
-  ["..xx", "xxx."],
+  ["...x", "..xx", "xxx."],
   ["xxxx"],
   [".xx", "xxx"],
-  ["xxx", "x.x"],
+  [".x.", "xxx"],
   ["x..", "xxx"],
-  ["x..", "x..", "xxx"],
+  ["x.x", "xxx"],
   ["x..", "xxx", "x.."],
   ["xx.", ".xx"],
 ];
@@ -89,7 +103,7 @@ export const firstXCols = itemMasks.map((masks) =>
   masks.map((mask) => mask[0].indexOf("x"))
 );
 
-export function solve(board: string[][]) {
+export function solve(board: string[][], solutionCount: number) {
   //console.log("board: " + board);
   const ret: { index: number; shapeRotation: number }[][] = [];
   const solution: ({ index: number; shapeRotation: number } | null)[] =
@@ -158,7 +172,7 @@ export function solve(board: string[][]) {
    */
   const findSolutions: any = (index: number) => {
     //count += 1;
-    if (ret.length > 49) {
+    if (solutionCount !== 0 && ret.length > solutionCount - 1) {
       return false;
     }
     const row = Math.floor(index / COLS);
