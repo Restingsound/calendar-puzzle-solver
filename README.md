@@ -2,13 +2,13 @@
 
 Created by Scott Mulderig
 
-[Built for Filmming Daily Puzzle Calendar](https://filmmings.com/products/daily-calendar-puzzle)
+A solver for [Filmming Daily Puzzle Calendar](https://filmmings.com/products/daily-calendar-puzzle)
 
-[Try the Solver](https://restingsound.github.io/calendar-puzzle-solver/)
+The web version of the solver is available [here](https://restingsound.github.io/calendar-puzzle-solver/)
 
-[Source Project](https://github.com/zjuasmn/calendar-puzzle-solver)
+Click the month, date, and day of week to view all the corresponding solutions, click a solution to view the details.
 
-Click the month, date, and day of week to view all the corresponding solutions, click the solution to view the details.
+Forked from [zjuasmn](https://github.com/zjuasmn/calendar-puzzle-solver)
 
 # Getting Started with Create React App
 
@@ -80,5 +80,3 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-# sure

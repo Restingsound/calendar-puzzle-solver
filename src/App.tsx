@@ -262,8 +262,12 @@ export default class App extends React.PureComponent<{}, AppState> {
             ))}
           </div>
         ) : (
-          <div>No Solution ？？</div>
+          <div>No Solutions Found</div>
         )}
+        <div>
+          This page was created by{" "}
+          <a href="https://github.com/Restingsound">Scott Mulderig</a>
+        </div>
       </div>
     );
   }
