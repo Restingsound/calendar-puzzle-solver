@@ -101,7 +101,10 @@ class CalendarBackground extends React.PureComponent<{}> {
   render() {
     return (
       <div className="CalendarBackground">
-        <img src="images/calendarBackground.png" alt="Calendar Background" />
+        <img
+          src="https://restingsound.github.io/calendar-puzzle-solver/images/calendarBackground.png"
+          alt="Calendar Background"
+        />
       </div>
     );
   }
@@ -345,25 +348,28 @@ export default class App extends React.PureComponent<{}, AppState> {
       <div className="App">
         <h1>Calendar Puzzle Solver with Day of Week</h1>
         <div>
+          Solver for{" "}
           <a href="https://filmmings.com/products/daily-calendar-puzzle">
-            Daily Calendar Puzzle with Day of Week
-          </a>
-          <a
-            href="https://github.com/Restingsound/calendar-puzzle-solver"
-            style={{ marginLeft: 16 }}
-          >
-            Github - Restingsound
+            Filmmings
+          </a>{" "}
+          Daily Calendar Puzzle
+          <br />
+          View Source on{" "}
+          <a href="https://github.com/Restingsound/calendar-puzzle-solver">
+            Github
           </a>
         </div>
         <div className="Container">
-          <Calendar
-            month={month}
-            day={day}
-            dayName={dayName}
-            onChange={this.handleChange}
-          />
-          <CalendarBackground />
-          {solutions[index] && <SolutionView solution={solutions[index]} />}
+          <div className="PerspectiveBox">
+            <Calendar
+              month={month}
+              day={day}
+              dayName={dayName}
+              onChange={this.handleChange}
+            />
+            <CalendarBackground />
+            {solutions[index] && <SolutionView solution={solutions[index]} />}
+          </div>
         </div>
 
         <div className="Solutions">

@@ -2,6 +2,10 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  background: rgb(237, 252, 252);
+}
+
 .App {
   text-align: center;
 }
@@ -11,6 +15,14 @@ html {
   height: 500px;
   position: relative;
   margin: 20px auto;
+  perspective: 100rem;
+}
+
+.PerspectiveBox {
+  position: relative;
+  z-index: -1;
+  transform-origin: left;
+  transform: rotateY(10deg) rotateX(-3deg);
 }
 
 .Calendar {
