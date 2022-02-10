@@ -37,58 +37,71 @@ class Calendar extends React.PureComponent<{
   render() {
     const { month, day, dayName, onChange } = this.props;
     return (
-      <div className="Calendar">
-        {range(0, 6).map((m) => (
-          <div
-            className={`item month ${month === m ? "selected" : ""}`}
-            key={m}
-            onClick={() => onChange({ month: m, day, dayName })}
-          >
-            {this.monthNames[m]}
-          </div>
-        ))}
-        <div className="item empty" />
-        {range(6, 12).map((m) => (
-          <div
-            className={`item month ${month === m ? "selected" : ""}`}
-            key={m}
-            onClick={() => onChange({ month: m, day, dayName })}
-          >
-            {this.monthNames[m]}
-          </div>
-        ))}
-        <div className="item empty" />
-        {range(1, 32).map((d) => (
-          <div
-            className={`item ${day === d ? "selected" : ""}`}
-            key={d}
-            onClick={() => onChange({ month, day: d, dayName })}
-          >
-            {d}
-          </div>
-        ))}
-        {range(0, 4).map((dn) => (
-          <div
-            className={`item day ${dayName === dn ? "selected" : ""}`}
-            key={dn}
-            onClick={() => onChange({ month, day, dayName: dn })}
-          >
-            {this.dayNames[dn]}
-          </div>
-        ))}
-        <div className="item empty" />
-        <div className="item empty" />
-        <div className="item empty" />
-        <div className="item empty" />
-        {range(4, 7).map((dn) => (
-          <div
-            className={`item day ${dayName === dn ? "selected" : ""}`}
-            key={dn}
-            onClick={() => onChange({ month, day, dayName: dn })}
-          >
-            {this.dayNames[dn]}
-          </div>
-        ))}
+      <div>
+        <div className="SolutionViewCell"></div>
+        <div className="Calendar">
+          {range(0, 6).map((m) => (
+            <div
+              className={`item month ${month === m ? "selected" : ""}`}
+              key={m}
+              onClick={() => onChange({ month: m, day, dayName })}
+            >
+              {this.monthNames[m]}
+            </div>
+          ))}
+          <div className="item empty" />
+          {range(6, 12).map((m) => (
+            <div
+              className={`item month ${month === m ? "selected" : ""}`}
+              key={m}
+              onClick={() => onChange({ month: m, day, dayName })}
+            >
+              {this.monthNames[m]}
+            </div>
+          ))}
+          <div className="item empty" />
+          {range(1, 32).map((d) => (
+            <div
+              className={`item ${day === d ? "selected" : ""}`}
+              key={d}
+              onClick={() => onChange({ month, day: d, dayName })}
+            >
+              {d}
+            </div>
+          ))}
+          {range(0, 4).map((dn) => (
+            <div
+              className={`item day ${dayName === dn ? "selected" : ""}`}
+              key={dn}
+              onClick={() => onChange({ month, day, dayName: dn })}
+            >
+              {this.dayNames[dn]}
+            </div>
+          ))}
+          <div className="item empty" />
+          <div className="item empty" />
+          <div className="item empty" />
+          <div className="item empty" />
+          {range(4, 7).map((dn) => (
+            <div
+              className={`item day ${dayName === dn ? "selected" : ""}`}
+              key={dn}
+              onClick={() => onChange({ month, day, dayName: dn })}
+            >
+              {this.dayNames[dn]}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+}
+
+class CalendarBackground extends React.PureComponent<{}> {
+  render() {
+    return (
+      <div className="CalendarBackground">
+        <img src="images/calendarBackground.png" alt="Calendar Background" />
       </div>
     );
   }
@@ -349,6 +362,7 @@ export default class App extends React.PureComponent<{}, AppState> {
             dayName={dayName}
             onChange={this.handleChange}
           />
+          <CalendarBackground />
           {solutions[index] && <SolutionView solution={solutions[index]} />}
         </div>
 

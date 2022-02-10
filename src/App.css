@@ -7,8 +7,8 @@ html {
 }
 
 .Container {
-  width: 350px;
-  height: 400px;
+  width: 450px;
+  height: 500px;
   position: relative;
   margin: 20px auto;
 }
@@ -16,13 +16,29 @@ html {
 .Calendar {
   display: flex;
   flex-wrap: wrap;
+  margin-left: 50px;
+  width: 350px;
+  height: 400px;
+  opacity: 0;
+}
 
+.CalendarBackground {
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  opacity: 1;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .SolutionView {
   position: absolute;
+
+  margin-left: 50px;
+  margin-top: 50px;
   left: 0;
   top: 0;
   opacity: 0.5;
