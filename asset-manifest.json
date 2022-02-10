@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/calendar-puzzle-solver/static/css/main.181c15a2.chunk.css",
+    "main.css": "/calendar-puzzle-solver/static/css/main.48a77114.chunk.css",
     "main.js": "/calendar-puzzle-solver/static/js/main.947ede8f.chunk.js",
     "main.js.map": "/calendar-puzzle-solver/static/js/main.947ede8f.chunk.js.map",
     "runtime-main.js": "/calendar-puzzle-solver/static/js/runtime-main.e087e625.js",
@@ -10,13 +10,13 @@
     "static/js/3.9b41bfa6.chunk.js": "/calendar-puzzle-solver/static/js/3.9b41bfa6.chunk.js",
     "static/js/3.9b41bfa6.chunk.js.map": "/calendar-puzzle-solver/static/js/3.9b41bfa6.chunk.js.map",
     "index.html": "/calendar-puzzle-solver/index.html",
-    "static/css/main.181c15a2.chunk.css.map": "/calendar-puzzle-solver/static/css/main.181c15a2.chunk.css.map",
+    "static/css/main.48a77114.chunk.css.map": "/calendar-puzzle-solver/static/css/main.48a77114.chunk.css.map",
     "static/js/2.1fc3bc82.chunk.js.LICENSE.txt": "/calendar-puzzle-solver/static/js/2.1fc3bc82.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.e087e625.js",
     "static/js/2.1fc3bc82.chunk.js",
-    "static/css/main.181c15a2.chunk.css",
+    "static/css/main.48a77114.chunk.css",
     "static/js/main.947ede8f.chunk.js"
   ]
 }
