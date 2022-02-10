@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/calendar-puzzle-solver/static/css/main.05de414b.chunk.css",
-    "main.js": "/calendar-puzzle-solver/static/js/main.3f326b43.chunk.js",
-    "main.js.map": "/calendar-puzzle-solver/static/js/main.3f326b43.chunk.js.map",
+    "main.js": "/calendar-puzzle-solver/static/js/main.456f68d8.chunk.js",
+    "main.js.map": "/calendar-puzzle-solver/static/js/main.456f68d8.chunk.js.map",
     "runtime-main.js": "/calendar-puzzle-solver/static/js/runtime-main.e087e625.js",
     "runtime-main.js.map": "/calendar-puzzle-solver/static/js/runtime-main.e087e625.js.map",
     "static/js/2.1fc3bc82.chunk.js": "/calendar-puzzle-solver/static/js/2.1fc3bc82.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.e087e625.js",
     "static/js/2.1fc3bc82.chunk.js",
     "static/css/main.05de414b.chunk.css",
-    "static/js/main.3f326b43.chunk.js"
+    "static/js/main.456f68d8.chunk.js"
   ]
 }
