@@ -358,6 +358,11 @@ export default class App extends React.PureComponent<{}, AppState> {
           <a href="https://github.com/Restingsound/calendar-puzzle-solver">
             Github
           </a>
+          <br />
+          <br />
+          <strong>
+            Click on the calendar to see solutions for the selected day.
+          </strong>
         </div>
         <div className="Container">
           <div className="PerspectiveBox">
